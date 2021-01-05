@@ -11,14 +11,14 @@ const queryCallback = (err, data, res) => {
 };
 
 const home = (req, res) => {
-  mysql.query('SELECT * FROM hostels', (err, data) =>
+  mysql.query('SELECT * FROM view_hostels', (err, data) =>
     queryCallback(err, data, res)
   );
 };
 
 const details = (req, res) => {
   mysql.query(
-    'SELECT * FROM hostels WHERE id=?',
+    'SELECT * FROM view_hostels WHERE id=?',
     [req.params.id],
     (err, data) => queryCallback(err, data, res)
   );
