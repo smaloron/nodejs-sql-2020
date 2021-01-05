@@ -1,14 +1,5 @@
 const mysql = require('../database/mysql');
-
-const queryCallback = (err, data, res) => {
-  if (err) {
-    res.status(500).json(err);
-  } else if (data.length == 0) {
-    res.status(404).json({ message: 'Aucun résultat pour cette requête' });
-  } else {
-    res.status(200).json(data);
-  }
-};
+const queryCallback = require('../database/query-callback');
 
 const home = (req, res) => {
   mysql.query('SELECT * FROM view_hostels', (err, data) =>
