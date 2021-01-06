@@ -9,7 +9,7 @@ const db = mysql.createConnection({
 
 const query = async (sql, params, res) => {
   try {
-    const cn = await mysql;
+    const cn = await db;
     const response = await cn.query(sql, params);
     const data = response[0];
     res.status(200).json(data);
