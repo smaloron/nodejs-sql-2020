@@ -20,4 +20,5 @@ const query = async (sql, params, res) => {
 
 module.exports = {
   query,
+  db,
 };
