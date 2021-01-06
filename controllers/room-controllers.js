@@ -5,16 +5,12 @@ const home = (req, res) => {
   mysql.query(
     'SELECT * FROM view_rooms WHERE hotel_id=?',
     [req.params.hotelId],
-    (err, data) => queryCallback(err, data, res)
+    res
   );
 };
 
 const details = (req, res) => {
-  mysql.query(
-    'SELECT * FROM view_rooms WHERE id=?',
-    [req.params.roomId],
-    (err, data) => queryCallback(err, data, res)
-  );
+  mysql.query('SELECT * FROM view_rooms WHERE id=?', [req.params.roomId], res);
 };
 
 const deleteOne = (req, res) => {
@@ -22,7 +18,7 @@ const deleteOne = (req, res) => {
     //
     'DELETE FROM rooms WHERE id= ?',
     [req.params.id],
-    (err, data) => queryCallback(err, data, res)
+    res
   );
 };
 
@@ -33,7 +29,7 @@ const insertOne = (req, res) => {
     // données postées
     req.body,
     // fonction de callback
-    (err, data) => queryCallback(err, data, res)
+    res
   );
 };
 
@@ -44,7 +40,7 @@ const updateOne = (req, res) => {
     // données
     [req.body, req.body.id],
     // fonction de callback
-    (err, data) => queryCallback(err, data, res)
+    res
   );
 };
 

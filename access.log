@@ -18,3 +18,4 @@
 ::1 - - [06/Jan/2021:09:42:32 +0000] "POST /main/matiere/new/Scala HTTP/1.1" 404 162 "-" "PostmanRuntime/7.26.8"
 ::1 - - [06/Jan/2021:09:42:53 +0000] "GET /main/matiere/new/Scala HTTP/1.1" 200 91 "-" "PostmanRuntime/7.26.8"
 ::1 - - [06/Jan/2021:09:45:50 +0000] "POST /main/person HTTP/1.1" 200 92 "-" "PostmanRuntime/7.26.8"
+::1 - - [06/Jan/2021:10:32:13 +0000] "GET /main/film/1 HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"

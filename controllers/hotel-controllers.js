@@ -1,24 +1,15 @@
 const mysql = require('../database/mysql');
-const queryCallback = require('../database/query-callback');
 
 const home = (req, res) => {
-  mysql.query('SELECT * FROM view_hostels', (err, data) =>
-    queryCallback(err, data, res)
-  );
+  mysql.query('SELECT * FROM view_hostels', res);
 };
 
 const details = (req, res) => {
-  mysql.query(
-    'SELECT * FROM view_hostels WHERE id=?',
-    [req.params.id],
-    (err, data) => queryCallback(err, data, res)
-  );
+  mysql.query('SELECT * FROM view_hostels WHERE id=?', [req.params.id], res);
 };
 
 const deleteOneById = (req, res) => {
-  mysql.query('DELETE FROM hostels WHERE id=?', [req.params.id], (err, data) =>
-    queryCallback(err, data, res)
-  );
+  mysql.query('DELETE FROM hostels WHERE id=?', [req.params.id], res);
 };
 
 const insertOne = (req, res) => {
@@ -27,8 +18,7 @@ const insertOne = (req, res) => {
     'INSERT INTO hostels SET ?',
     // données postées
     req.body,
-    // fonction de callback
-    (err, data) => queryCallback(err, data, res)
+    res
   );
 };
 
@@ -38,8 +28,7 @@ const updateOne = (req, res) => {
     'UPDATE hostels SET ? WHERE id=?',
     // données
     [req.body, req.body.id],
-    // fonction de callback
-    (err, data) => queryCallback(err, data, res)
+    res
   );
 };
 
