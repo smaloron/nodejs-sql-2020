@@ -1,0 +1,2 @@
+::1 - - [06/Jan/2021:08:28:56 +0000] "GET /room/details/5 HTTP/1.1" 304 - "-" "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_15_7) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36"
+::1 - - [06/Jan/2021:08:29:17 +0000] "GET /room/1 HTTP/1.1" 200 302 "-" "PostmanRuntime/7.26.8"
