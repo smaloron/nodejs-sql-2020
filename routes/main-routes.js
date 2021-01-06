@@ -13,38 +13,22 @@ router.use((req, res, next) => {
 });
 
 // Définition des routes
-router.get('/', (req, res) => {
+router.get('/', async (req, res) => {
   // Exécution d'une requête
-  mysql.query('SELECT * FROM films', (err, data) => {
-    if (err) {
-      res.status(500).json({ message: err });
-    } else {
-      res.status(200).json(data);
-    }
-  });
+  await mysql.query('SELECT * FROM films', []);
 });
 
-router.get('/film/:id([0-9]+)', (req, res) => {
-  mysql.query(
-    'SELECT * FROM films WHERE id=?',
-    [req.params.id],
-    (err, data) => {
-      res.status(200).json(data);
-    }
-  );
+router.get('/film/:id([0-9]+)', async (req, res) => {
+  await mysql.query('SELECT * FROM films WHERE id=?', [req.params.id]);
 });
 
-router.get('/matiere/new/:name', (req, res) => {
+router.get('/matiere/new/:name', async (req, res) => {
   const matiere = { matiere: req.params.name };
-  mysql.query('INSERT INTO matieres SET ?', matiere, (err, data) => {
-    res.status(200).json(data);
-  });
+  await mysql.query('INSERT INTO matieres SET ?', matiere);
 });
 
-router.post('/person', (req, res) => {
-  mysql.query('INSERT INTO personnes SET ?', req.body, (err, data) => {
-    res.status(200).json(data);
-  });
+router.post('/person', async (req, res) => {
+  await mysql.query('INSERT INTO personnes SET ?', req.body);
 });
 
 router.get('/test', (req, res) => {
