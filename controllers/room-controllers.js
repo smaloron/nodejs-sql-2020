@@ -26,8 +26,32 @@ const deleteOne = (req, res) => {
   );
 };
 
+const insertOne = (req, res) => {
+  mysql.query(
+    // sql
+    'INSERT INTO rooms SET ?',
+    // données postées
+    req.body,
+    // fonction de callback
+    (err, data) => queryCallback(err, data, res)
+  );
+};
+
+const updateOne = (req, res) => {
+  mysql.query(
+    // sql
+    'UPDATE rooms SET ? WHERE id=?',
+    // données
+    [req.body, req.body.id],
+    // fonction de callback
+    (err, data) => queryCallback(err, data, res)
+  );
+};
+
 module.exports = {
   home,
   details,
   deleteOne,
+  insertOne,
+  updateOne,
 };
