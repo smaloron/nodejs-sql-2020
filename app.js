@@ -37,6 +37,7 @@ app.use(morgan('combined', { stream: loggerStream }));
 
 app.use('/jquery', express.static('node_modules/jquery/dist'));
 app.use('/bootstrap', express.static('node_modules/bootstrap/dist'));
+app.use(express.static('assets'));
 
 app.set('view engine', 'pug');
 
@@ -64,6 +65,8 @@ app.post('/login', async (req, res) => {
       'SELECT * FROM users WHERE login=? AND pwd=SHA1(?)',
       [req.body.login, req.body.pwd]
     );
+
+    console.log(req.body);
     // Attention les données sont dans un tableau de tableau contenant un objet
     const data = response[0][0];
     // Si aucune données alors la clef 0 du résultat est un tableau vide
