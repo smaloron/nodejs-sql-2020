@@ -10,6 +10,8 @@ const morgan = require('morgan');
 // Import du module body-parser pour récupérer les données postées
 const bodyParser = require('body-parser');
 
+const sha1 = require('sha1');
+
 // Import de json web token
 const jwt = require('jsonwebtoken');
 
@@ -56,6 +58,21 @@ app.get('/jwt', (req, res) => {
   res.status(200).json({ token: token });
 });
 
+app.post('/register', async (req, res) => {
+  const cn = await mysql.db;
+  const user = {
+    login: req.body.login,
+    username: req.body.username,
+    pwd: sha1(req.body.pwd),
+  };
+  const response = await cn.query('INSERT INTO users SET ?', user);
+  const id = response[0].insertId;
+  user.id = id;
+
+  const token = jwt.sign(user, jwtSecret);
+
+  res.status(200).json({ user: user, token: token });
+});
 app.post('/login', async (req, res) => {
   try {
     // Connexion à la base de données
