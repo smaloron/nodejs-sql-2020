@@ -35,6 +35,17 @@ app.use(bodyParser.urlencoded({ extended: true }));
 
 app.use(morgan('combined', { stream: loggerStream }));
 
+app.use('/jquery', express.static('node_modules/jquery/dist'));
+app.use('/bootstrap', express.static('node_modules/bootstrap/dist'));
+
+app.set('view engine', 'pug');
+
+// Routes non sécurisées
+
+app.get('/', (req, res) => {
+  res.render('index');
+});
+
 app.get('/jwt', (req, res) => {
   // Définition des données
   const user = { name: 'Joe', pass: '123', role: 'admin' };
